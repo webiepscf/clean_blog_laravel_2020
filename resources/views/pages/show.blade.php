@@ -1,10 +1,34 @@
 {{--
   ./resources/views/pages/show.blade.php
   Variables disponibles :
-    $page OBJ(id, titre, texte, titreMenu, image, created_at, ...)
+    $page OBJ(id, titre, sousTitre, texte, titreMenu, image, created_at, ...)
 --}}
+@extends('template.index')
 
-<h1>{{ $page->titre }}</h1>
-<div class="">
-  {!! html_entity_decode($page->texte) !!}
-</div>
+@section('content')
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{ asset('assets/img/' . $page->image) }})">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{ $page->titre }}</h1>
+            <span class="subheading">{{ $page->sousTitre }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Textes -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="clearfix">
+          {!! html_entity_decode($page->texte) !!}
+        </div>
+        {{-- Ici viennent les contenus complémentaires (posts, formulaire, ...) --}}
+      </div>
+    </div>
+  </div>
+@endsection
