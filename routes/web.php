@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// ROUTES DES PAGES ----------------------------------------
+  use App\Http\Controllers\PagesController;
+    Route::get('/', [PagesController::class, 'show'])->name('homepage');
+    Route::get('/pages/{id}/{slug}', [PagesController::class, 'show'])
+          ->where([
+            'id'   => '[1-9][0-9]*',
+            'slug' => '[a-z0-9][a-z0-9\-]*'
+          ])
+          ->name('pages.show');
+    //Route::resource('pages', PagesController::class)->only(['index', 'show']);
