@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
     $view->with('pages', App\Models\Page::orderBy('tri', 'asc')->get());
   });
 
+  View::composer('posts._index', function($view){
+    $view->with('posts', App\Models\Post::orderBy('datePublication', 'desc')->take(10)->get());
+  });
+
 
 // ROUTES DES PAGES ----------------------------------------
   use App\Http\Controllers\PagesController;
