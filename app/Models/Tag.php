@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Author extends Model
+class Tag extends Model
 {
     use HasFactory;
+
     public function posts () {
-      return $this->hasMany('App\Models\Post');
+      return $this->belongsToMany('App\Models\Post','posts_has_tags');
     }
 }

@@ -23,6 +23,22 @@ use Illuminate\Support\Facades\Route;
   });
 
 
+// ROUTES DES POSTS ----------------------------------------
+  use App\Http\Controllers\PostsController;
+
+  // DETAILS D'UN POST
+  // PATTERN: posts/id/slug
+  // CTRL: Posts
+  // ACTION: show
+	 Route::get('/posts/{post}/{slug}', [PostsController::class, 'show'])
+         ->where ([
+           'post'   => '[1-9][0-9]*',
+           'slug' => '[a-z0-9][a-z0-9\-]*'
+         ])
+         ->name('posts.show');
+
+
+
 // ROUTES DES PAGES ----------------------------------------
   use App\Http\Controllers\PagesController;
     Route::get('/', [PagesController::class, 'show'])->name('homepage');
