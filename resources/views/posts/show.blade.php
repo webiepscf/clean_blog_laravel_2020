@@ -1,7 +1,7 @@
 {{--
   ./app/resources/views/posts/show.blade.php
   Variables disponibles:
-    $post OBJ(id, titre, sousTitre, texte, created_at, author_id, author OBJ)
+    $post OBJ(id, titre, sousTitre, texte, created_at, author_id, author OBJ, tags ARRAY(OBJ Tag))
 --}}
 @extends('template.index')
 
@@ -40,11 +40,18 @@
           <!-- POST DETAILS -->
           {{ $post->texte }}
           <hr/>
-          <h2>Posts du même auteur:</h2>
+          <h2>Liste des {{ count($post->author->posts) }} posts du même auteur:</h2>
           <ul>
             @foreach ($post->author->posts as $postAuthor)
               @if ($postAuthor->id !== $post->id)
-                <li>{{ $postAuthor->titre }}</li>
+                <li>
+                  {{ $postAuthor->titre }}
+                  {{-- Les tags du postAuthor --}}
+                    @foreach ($postAuthor->tags as $tag)
+                      [{{ $tag->nom }} - {{ count($tag->posts) }}]
+                    @endforeach
+
+                </li>
               @endif
             @endforeach
           </ul>
