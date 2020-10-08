@@ -15,10 +15,14 @@
           <div class="post-heading">
             <h1>{{ $post->titre }}</h1>
             <h2 class="subheading">{{ $post->sousTitre }}</h2>
-            <span class="meta">Posted on {{ $post->datePublication }} by {{ $post->author->firstname }} {{ $post->author->lastname }}</span>
+            <span class="meta">
+              Posted on {{ $post->datePublication }}
+              by {{ $post->author->firstname }}
+                 {{ $post->author->lastname }} ({{ count($post->author->posts) }})
+            </span>
             <ul>
               @foreach ($post->tags as $tag)
-                <li>{{ $tag->nom }}</li>
+                <li>{{ $tag->nom }} ({{ count($tag->posts) }})</li>
               @endforeach
             </ul>
           </div>

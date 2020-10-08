@@ -37,12 +37,7 @@
         @endif
       </div>
       <div class="col-lg-4 col-md-2">
-        <ul class="list-group">
-          <li class="list-group-item"><a href=""><strong>Tags</strong></a></li>
-          <li class="list-group-item"><a href="">Lorem.</a></li>
-          <li class="list-group-item"><a href="">Quia.</a></li>
-          <li class="list-group-item"><a href="">Accusamus?</a></li>
-        </ul>
+        @include('tags._index')
       </div>
     </div>
   </div>
